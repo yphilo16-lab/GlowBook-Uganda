@@ -23,7 +23,7 @@ class Service(models.Model):
     audience = models.CharField(max_length=20, choices=AUDIENCE_CHOICES, default='Unisex')
     price = models.DecimalField(max_digits=10, decimal_places=2)
     duration = models.CharField(max_length=60, default='60 minutes')
-    image = models.URLField(default='https://images.unsplash.com/photo-1521590832167-7b0d0d0d0b6a?auto=format&fit=crop&w=900&q=80')
+    image = models.URLField(default='https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=900&q=80')
     available = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
