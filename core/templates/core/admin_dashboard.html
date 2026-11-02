@@ -1,0 +1,88 @@
+{% extends 'core/base.html' %}
+
+{% block title %}Admin Dashboard | GlowBook Uganda{% endblock %}
+
+{% block content %}
+<section class="page-hero small-hero">
+    <div class="container narrow">
+        <p class="eyebrow">Management dashboard</p>
+        <h1>GlowBook Uganda admin overview</h1>
+    </div>
+</section>
+
+<section class="section section-plain">
+    <div class="container dashboard-grid">
+        <div class="dashboard-card highlight-card">
+            <h3>Total users</h3>
+            <p class="stat-number">{{ total_users }}</p>
+            <p>Registered accounts in the system.</p>
+        </div>
+
+        <div class="dashboard-card">
+            <h3>Customer profiles</h3>
+            <p class="stat-number">{{ total_customers }}</p>
+            <p>Signed-up beauty customers.</p>
+        </div>
+
+        <div class="dashboard-card">
+            <h3>Services</h3>
+            <p class="stat-number">{{ total_services }}</p>
+            <p>Available and active offerings.</p>
+        </div>
+
+        <div class="dashboard-card">
+            <h3>Appointments</h3>
+            <p class="stat-number">{{ total_appointments }}</p>
+            <p>All bookings in the system.</p>
+        </div>
+    </div>
+</section>
+
+<section class="section muted-section">
+    <div class="container dashboard-grid">
+        <div class="dashboard-card">
+            <h3>Pending</h3>
+            <p class="stat-number">{{ pending_count }}</p>
+        </div>
+        <div class="dashboard-card">
+            <h3>Confirmed</h3>
+            <p class="stat-number">{{ confirmed_count }}</p>
+        </div>
+        <div class="dashboard-card">
+            <h3>Completed</h3>
+            <p class="stat-number">{{ completed_count }}</p>
+        </div>
+        <div class="dashboard-card">
+            <h3>Cancelled</h3>
+            <p class="stat-number">{{ cancelled_count }}</p>
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+        <div class="panel-box">
+            <h3>Recent bookings</h3>
+            {% if recent_bookings %}
+                <ul class="booking-list">
+                    {% for booking in recent_bookings %}
+                        <li>
+                            <div>
+                                <strong>{{ booking.customer.user.get_full_name|default:booking.customer.user.username }}</strong>
+                                <p>{{ booking.service.name }} · {{ booking.appointment_date }} at {{ booking.appointment_time }}</p>
+                            </div>
+                            <div class="booking-actions">
+                                <span class="status-badge status-{{ booking.status|lower }}">{{ booking.status }}</span>
+                            </div>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <div class="empty-state">
+                    <p>No bookings have been made yet.</p>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</section>
+{% endblock %}

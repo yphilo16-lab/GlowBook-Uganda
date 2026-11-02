@@ -1,0 +1,77 @@
+{% extends 'core/base.html' %}
+
+{% block title %}Dashboard | GlowBook Uganda{% endblock %}
+
+{% block content %}
+<section class="page-hero small-hero">
+    <div class="container narrow">
+        <p class="eyebrow">Customer dashboard</p>
+        <h1>Welcome back, {{ user.first_name|default:user.username }}.</h1>
+    </div>
+</section>
+
+<section class="section section-plain">
+    <div class="container dashboard-grid">
+        <div class="dashboard-card highlight-card">
+            <h3>Profile</h3>
+            <ul class="detail-list">
+                <li><strong>Name:</strong> {{ user.get_full_name|default:user.username }}</li>
+                <li><strong>Email:</strong> {{ user.email }}</li>
+                <li><strong>Phone:</strong> {{ profile.phone|default:'Not added yet' }}</li>
+            </ul>
+        </div>
+        <div class="dashboard-card">
+            <h3>Available services</h3>
+            <p class="stat-number">{{ service_count }}</p>
+            <a href="{% url 'services' %}" class="text-link">View all services</a>
+        </div>
+        <div class="dashboard-card">
+            <h3>Upcoming appointments</h3>
+            <p class="stat-number">{{ upcoming|length }}</p>
+            <a href="{% url 'my_bookings' %}" class="text-link">Manage bookings</a>
+        </div>
+    </div>
+</section>
+
+<section class="section muted-section">
+    <div class="container two-column">
+        <div class="panel-box">
+            <h3>Upcoming bookings</h3>
+            {% if upcoming %}
+                <ul class="booking-list">
+                    {% for booking in upcoming %}
+                        <li>
+                            <div>
+                                <strong>{{ booking.service.name }}</strong>
+                                <span>{{ booking.appointment_date }} at {{ booking.appointment_time }}</span>
+                            </div>
+                            <span class="status-badge status-{{ booking.status|lower }}">{{ booking.status }}</span>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>No upcoming appointments yet.</p>
+            {% endif %}
+        </div>
+
+        <div class="panel-box">
+            <h3>Previous bookings</h3>
+            {% if previous %}
+                <ul class="booking-list">
+                    {% for booking in previous %}
+                        <li>
+                            <div>
+                                <strong>{{ booking.service.name }}</strong>
+                                <span>{{ booking.appointment_date }} at {{ booking.appointment_time }}</span>
+                            </div>
+                            <span class="status-badge status-{{ booking.status|lower }}">{{ booking.status }}</span>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>No prior bookings yet.</p>
+            {% endif %}
+        </div>
+    </div>
+</section>
+{% endblock %}

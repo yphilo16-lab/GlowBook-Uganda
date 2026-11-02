@@ -1,0 +1,78 @@
+{% extends 'core/base.html' %}
+
+{% block title %}My Bookings | GlowBook Uganda{% endblock %}
+
+{% block content %}
+<section class="page-hero small-hero">
+    <div class="container narrow">
+        <p class="eyebrow">Appointments</p>
+        <h1>My bookings</h1>
+    </div>
+</section>
+
+<section class="section muted-section">
+    <div class="container booking-sections">
+        <div class="panel-box">
+            <h3>Upcoming</h3>
+            {% if upcoming %}
+                <div class="booking-stack">
+                    {% for booking in upcoming %}
+                        <div class="booking-row">
+                            <div>
+                                <strong>{{ booking.service.name }}</strong>
+                                <p>{{ booking.appointment_date }} at {{ booking.appointment_time }}</p>
+                                <small>UGX {{ booking.service.price }} · {{ booking.service.duration }}</small>
+                            </div>
+                            <div class="booking-actions">
+                                <span class="status-badge status-{{ booking.status|lower }}">{{ booking.status }}</span>
+                                {% if booking.status != 'Completed' and booking.status != 'Cancelled' %}
+                                <form method="post" action="{% url 'cancel_booking' booking.id %}">
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn btn-ghost small-btn">Cancel</button>
+                                </form>
+                                {% endif %}
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <p>No upcoming bookings.</p>
+            {% endif %}
+        </div>
+
+        <div class="panel-box">
+            <h3>Completed</h3>
+            {% if completed %}
+                {% for booking in completed %}
+                    <div class="booking-row compact">
+                        <div>
+                            <strong>{{ booking.service.name }}</strong>
+                            <p>{{ booking.appointment_date }} at {{ booking.appointment_time }}</p>
+                        </div>
+                        <span class="status-badge status-completed">Completed</span>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <p>No completed bookings yet.</p>
+            {% endif %}
+        </div>
+
+        <div class="panel-box">
+            <h3>Cancelled</h3>
+            {% if cancelled %}
+                {% for booking in cancelled %}
+                    <div class="booking-row compact">
+                        <div>
+                            <strong>{{ booking.service.name }}</strong>
+                            <p>{{ booking.appointment_date }} at {{ booking.appointment_time }}</p>
+                        </div>
+                        <span class="status-badge status-cancelled">Cancelled</span>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <p>No cancelled bookings.</p>
+            {% endif %}
+        </div>
+    </div>
+</section>
+{% endblock %}

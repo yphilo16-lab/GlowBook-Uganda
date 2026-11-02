@@ -1,0 +1,25 @@
+{% extends 'core/base.html' %}
+
+{% block title %}Booking Confirmed{% endblock %}
+
+{% block content %}
+<section class="section success-section">
+    <div class="container success-wrap">
+        <div class="success-card">
+            <div class="success-icon"><i class="fa-solid fa-circle-check"></i></div>
+            <p class="eyebrow">Appointment confirmed</p>
+            <h1>Thank you for booking with GlowBook Uganda.</h1>
+            <p>Your appointment for <strong>{{ appointment.service.name }}</strong> has been scheduled for <strong>{{ appointment.appointment_date }}</strong> at <strong>{{ appointment.appointment_time }}</strong>.</p>
+            <div class="booking-summary">
+                <span>Service: {{ appointment.service.name }}</span>
+                <span>Price: UGX {{ appointment.service.price }}</span>
+                <span>Status: {{ appointment.status }}</span>
+            </div>
+            <div class="button-row">
+                <a class="btn btn-primary" href="{% url 'my_bookings' %}">View My Bookings</a>
+                <a class="btn btn-secondary btn-dark" href="{{ whatsapp_url }}" target="_blank" rel="noopener">Chat on WhatsApp</a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

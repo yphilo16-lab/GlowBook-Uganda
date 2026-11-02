@@ -1,0 +1,48 @@
+{% extends 'core/base.html' %}
+
+{% block title %}Book an Appointment{% endblock %}
+
+{% block content %}
+<section class="page-hero small-hero">
+    <div class="container narrow">
+        <p class="eyebrow">Booking</p>
+        <h1>Reserve your preferred beauty session.</h1>
+    </div>
+</section>
+
+<section class="section section-plain">
+    <div class="container form-layout">
+        <div class="info-panel-card booking-intro">
+            <h3>Booking steps</h3>
+            <ul class="check-list">
+                <li><i class="fa-solid fa-check"></i> Choose a service</li>
+                <li><i class="fa-solid fa-check"></i> Pick a future date</li>
+                <li><i class="fa-solid fa-check"></i> Select your available time</li>
+                <li><i class="fa-solid fa-check"></i> Confirm your details</li>
+            </ul>
+        </div>
+
+        <div class="form-card">
+            <h2>Book Appointment</h2>
+            <form method="post">
+                {% csrf_token %}
+                {% if form.non_field_errors %}
+                    <div class="form-alert">{{ form.non_field_errors|join:', ' }}</div>
+                {% endif %}
+
+                {% for field in form %}
+                    <div class="field-block">
+                        <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                        {{ field }}
+                        {% if field.errors %}
+                            <small class="field-error">{{ field.errors|join:', ' }}</small>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+
+                <button type="submit" class="btn btn-primary full-width">Confirm Booking</button>
+            </form>
+        </div>
+    </div>
+</section>
+{% endblock %}

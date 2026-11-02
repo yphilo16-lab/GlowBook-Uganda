@@ -1,0 +1,38 @@
+{% extends 'core/base.html' %}
+
+{% block title %}Register | GlowBook Uganda{% endblock %}
+
+{% block content %}
+<section class="section auth-section">
+    <div class="container auth-wrap">
+        <div class="auth-panel auth-panel-soft">
+            <p class="eyebrow">Create account</p>
+            <h1>Join GlowBook Uganda</h1>
+            <p>Book your preferred beauty and wellness services in minutes.</p>
+        </div>
+
+        <div class="form-card auth-card">
+            <h2>Register</h2>
+            <form method="post">
+                {% csrf_token %}
+                {% if form.non_field_errors %}
+                    <div class="form-alert">{{ form.non_field_errors|join:', ' }}</div>
+                {% endif %}
+
+                {% for field in form %}
+                    <div class="field-block">
+                        <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                        {{ field }}
+                        {% if field.errors %}
+                            <small class="field-error">{{ field.errors|join:', ' }}</small>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+
+                <button type="submit" class="btn btn-primary full-width">Create Account</button>
+            </form>
+            <p class="auth-text">Already have an account? <a href="{% url 'login' %}">Login</a></p>
+        </div>
+    </div>
+</section>
+{% endblock %}

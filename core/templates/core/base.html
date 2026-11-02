@@ -1,0 +1,88 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}GlowBook Uganda{% endblock %}</title>
+    <meta name="description" content="GlowBook Uganda helps you book beauty and wellness appointments across Uganda." />
+    <link rel="stylesheet" href="{% static 'core/styles.css' %}">
+</head>
+<body>
+    <header class="topbar">
+        <div class="container nav-wrap">
+            <a href="{% url 'home' %}" class="brand" aria-label="GlowBook Uganda home">
+                <span class="brand-mark">G</span>
+                <span>GlowBook Uganda</span>
+            </a>
+
+            <nav class="main-nav" aria-label="Main navigation">
+                <a href="{% url 'home' %}">Home</a>
+                <a href="{% url 'services' %}">Services</a>
+                <a href="{% url 'about' %}">About</a>
+                <a href="{% url 'contact' %}">Contact</a>
+                {% if user.is_authenticated %}
+                    {% if user.is_staff %}
+                        <a href="{% url 'admin_dashboard' %}">Admin Dashboard</a>
+                    {% endif %}
+                    <a href="{% url 'dashboard' %}">Dashboard</a>
+                    <a href="{% url 'my_bookings' %}">My Bookings</a>
+                    <a href="{% url 'logout' %}">Logout</a>
+                {% else %}
+                    <a href="{% url 'login' %}">Login</a>
+                    <a href="{% url 'register' %}" class="nav-cta">Register</a>
+                {% endif %}
+            </nav>
+        </div>
+    </header>
+
+    {% if messages %}
+        <div class="toast-stack">
+            {% for message in messages %}
+                <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+            {% endfor %}
+        </div>
+    {% endif %}
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer class="site-footer">
+        <div class="container footer-grid">
+            <div>
+                <div class="brand brand-footer">
+                    <span class="brand-mark">G</span>
+                    <span>GlowBook Uganda</span>
+                </div>
+                <p class="footer-copy">Your trusted beauty and wellness booking partner across Uganda.</p>
+            </div>
+            <div>
+                <h4>Quick Links</h4>
+                <ul class="footer-links">
+                    <li><a href="{% url 'services' %}">Services</a></li>
+                    <li><a href="{% url 'about' %}">About</a></li>
+                    <li><a href="{% url 'contact' %}">Contact</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Contact</h4>
+                <ul class="footer-links">
+                    <li><a href="tel:+256789251543">+256 789 251 543</a></li>
+                    <li><a href="mailto:hello@glowbookug.com">hello@glowbookug.com</a></li>
+                    <li>Kampala, Uganda</li>
+                </ul>
+            </div>
+        </div>
+        <div class="container footer-bottom">
+            <p>© <span id="year"></span> GlowBook Uganda. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <a class="whatsapp-float" href="https://wa.me/256789251543?text=Hello%20GlowBook%20Uganda%2C%20I%20would%20like%20to%20book%20a%20service." target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
+
+    <script src="{% static 'core/app.js' %}"></script>
+</body>
+</html>

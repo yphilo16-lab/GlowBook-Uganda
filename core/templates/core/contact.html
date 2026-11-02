@@ -1,0 +1,43 @@
+{% extends 'core/base.html' %}
+
+{% block title %}Contact GlowBook Uganda{% endblock %}
+
+{% block content %}
+<section class="page-hero small-hero">
+    <div class="container narrow">
+        <p class="eyebrow">Contact</p>
+        <h1>Let’s help you glow.</h1>
+    </div>
+</section>
+
+<section class="section section-plain">
+    <div class="container contact-layout">
+        <div class="contact-card">
+            <h3>Reach out</h3>
+            <div class="contact-item"><i class="fa-solid fa-phone"></i><span>+256 789 251 543</span></div>
+            <div class="contact-item"><i class="fa-solid fa-envelope"></i><span>hello@glowbookug.com</span></div>
+            <div class="contact-item"><i class="fa-solid fa-location-dot"></i><span>Kampala, Uganda</span></div>
+            <a class="btn btn-primary whatsapp-inline" href="https://wa.me/256789251543?text=Hello%20GlowBook%20Uganda%2C%20I%20need%20help%20with%20a%20service%20booking." target="_blank" rel="noopener">
+                <i class="fa-brands fa-whatsapp"></i> Chat on WhatsApp
+            </a>
+        </div>
+
+        <div class="form-card">
+            <h2>Send us a message</h2>
+            <form method="post">
+                {% csrf_token %}
+                {% for field in form %}
+                    <div class="field-block">
+                        <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                        {{ field }}
+                        {% if field.errors %}
+                            <small class="field-error">{{ field.errors|join:', ' }}</small>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+                <button type="submit" class="btn btn-primary full-width">Send Message</button>
+            </form>
+        </div>
+    </div>
+</section>
+{% endblock %}

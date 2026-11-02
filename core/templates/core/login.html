@@ -1,0 +1,32 @@
+{% extends 'core/base.html' %}
+
+{% block title %}Login | GlowBook Uganda{% endblock %}
+
+{% block content %}
+<section class="section auth-section">
+    <div class="container auth-wrap">
+        <div class="auth-panel auth-panel-soft">
+            <p class="eyebrow">Welcome back</p>
+            <h1>Continue your glow journey</h1>
+            <p>Access your bookings, preferred styles, and appointment history.</p>
+        </div>
+
+        <div class="form-card auth-card">
+            <h2>Login</h2>
+            <form method="post">
+                {% csrf_token %}
+                <div class="field-block">
+                    <label for="username">Username</label>
+                    <input type="text" name="username" id="username" required>
+                </div>
+                <div class="field-block">
+                    <label for="password">Password</label>
+                    <input type="password" name="password" id="password" required>
+                </div>
+                <button type="submit" class="btn btn-primary full-width">Login</button>
+            </form>
+            <p class="auth-text">New here? <a href="{% url 'register' %}">Create an account</a></p>
+        </div>
+    </div>
+</section>
+{% endblock %}
