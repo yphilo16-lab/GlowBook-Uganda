@@ -4,6 +4,7 @@ Django settings for shamse project.
 
 import os
 import socket
+import sys
 from pathlib import Path
 
 import dj_database_url
@@ -99,6 +100,9 @@ STORAGES = {
         'BACKEND': 'whitenoise.storage.CompressedManifestStaticFilesStorage',
     },
 }
+
+if 'test' in sys.argv:
+    STORAGES['staticfiles']['BACKEND'] = 'django.contrib.staticfiles.storage.StaticFilesStorage'
 
 SECURE_SSL_REDIRECT = not DEBUG
 SESSION_COOKIE_SECURE = not DEBUG

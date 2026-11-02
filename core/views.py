@@ -24,7 +24,7 @@ def ensure_default_services():
             'audience': 'Women',
             'price': '120000.00',
             'duration': '90 minutes',
-            'image': 'https://images.unsplash.com/photo-1521590832167-7b0d0d0d0b6a?auto=format&fit=crop&w=900&q=80',
+            'image': 'https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=900&q=80',
         },
         {
             'name': 'Glow Facial Therapy',

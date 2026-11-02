@@ -11,7 +11,7 @@ User = get_user_model()
 class RegistrationForm(UserCreationForm):
     full_name = forms.CharField(max_length=150, required=True)
     email = forms.EmailField(required=True)
-    phone_number = forms.CharField(max_length=20, required=True)
+    phone_number = forms.CharField(max_length=20, required=False)
 
     class Meta:
         model = User
@@ -35,11 +35,12 @@ class RegistrationForm(UserCreationForm):
         if commit:
             user.save()
 
+        phone_number = self.cleaned_data.get('phone_number', '')
         profile, _ = CustomerProfile.objects.get_or_create(
             user=user,
-            defaults={'phone': self.cleaned_data['phone_number']},
+            defaults={'phone': phone_number},
         )
-        profile.phone = self.cleaned_data['phone_number']
+        profile.phone = phone_number
         profile.save()
         return user
 
