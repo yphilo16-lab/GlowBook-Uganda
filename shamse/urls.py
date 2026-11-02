@@ -24,9 +24,9 @@ urlpatterns = [
     path('admin/', admin.site.urls),
      path('', include('core.urls')),
      path(
-        'googleb0d3c1e7f5a4e9b.html',
+        'googledeed6e53a34f4187.html',
         lambda request: HttpResponse(
-            'google-site-verification: googleb0d3c1e7f5a4e9b.html',
+            'google-site-verification:googledeed6e53a34f4187.html',
             content_type='text/html'
         )
      ),
