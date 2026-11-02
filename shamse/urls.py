@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.urls import path, include
 from django.http import HttpResponse
 from django.contrib.sitemaps.views import sitemap
-from django.contrib.sitemaps import GenericSitemap
+from core.sitemaps import StaticViewSitemap
 
 """
 URL configuration for shamse project.
