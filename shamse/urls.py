@@ -1,3 +1,6 @@
+from django.views.generic import TemplateView
+from django.urls import path,
+from django.http import HttpResponse
 """
 URL configuration for shamse project.
 
@@ -20,4 +23,11 @@ from django.urls import path, include
 urlpatterns = [
     path('admin/', admin.site.urls),
      path('', include('core.urls')),
+     path(
+        'googleb0d3c1e7f5a4e9b.html',
+        lambda request: HttpResponse(
+            'google-site-verification: googleb0d3c1e7f5a4e9b.html',
+            content_type='text/html'
+        )
+     ),
 ]
