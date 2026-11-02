@@ -1,6 +1,9 @@
 from django.contrib import admin
 from django.urls import path, include
 from django.http import HttpResponse
+from django.contrib.sitemaps.views import sitemap
+from django.contrib.sitemaps import GenericSitemap
+
 """
 URL configuration for shamse project.
 
@@ -31,4 +34,11 @@ urlpatterns = [
      ),
     #Main Website URLS
     path('', include('core.urls')),
+    #Sitemap URL
+    path(
+        'sitemap.xml', 
+        sitemap, 
+        {'sitemaps': {'pages': StaticViewSitemap}}, 
+        name='django.contrib.sitemaps.views.sitemap'
+        ),
 ]
