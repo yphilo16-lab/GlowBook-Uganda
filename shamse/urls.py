@@ -1,5 +1,5 @@
-from django.views.generic import TemplateView
-from django.urls import path,
+from django.contrib import admin
+from django.urls import path, include
 from django.http import HttpResponse
 """
 URL configuration for shamse project.
@@ -17,17 +17,18 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.contrib import admin
-from django.urls import path, include
 
 urlpatterns = [
+    #Django Admin
     path('admin/', admin.site.urls),
-     path('', include('core.urls')),
-     path(
+    #Google Search Console Verification
+    path(
         'googledeed6e53a34f4187.html',
         lambda request: HttpResponse(
             'google-site-verification:googledeed6e53a34f4187.html',
             content_type='text/html'
         )
      ),
+    #Main Website URLS
+    path('', include('core.urls')),
 ]
