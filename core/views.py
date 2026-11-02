@@ -9,6 +9,7 @@ from django.views.decorators.http import require_POST
 
 from .forms import BookingForm, ContactForm, RegistrationForm
 from .models import Appointment, CustomerProfile, Service
+from .telegram_notifications import send_telegram_notification
 
 
 def home(request):
@@ -44,9 +45,17 @@ def register(request):
     form = RegistrationForm(request.POST or None)
     if request.method == 'POST' and form.is_valid():
         user = form.save()
+    
+        send_telegram_notification(
+            f"🎉 NEW CUSTOMER REGISTRATION\n\n"
+            f"Username: {user.username}\n"
+            f"Email: {user.email}"
+        )
         user = authenticate(username=user.username, password=form.cleaned_data['password1'])
+        
         if user is not None:
             login(request, user)
+
         messages.success(request, 'Welcome to GlowBook Uganda! Your account is ready.')
         return redirect('dashboard')
     return render(request, 'core/register.html', {'form': form})
@@ -132,6 +141,14 @@ def booking(request):
         appointment.customer = profile
         appointment.phone_number = form.cleaned_data['phone_number']
         appointment.save()
+        send_telegram_notification(
+        f"📅 NEW BOOKING RECEIVED!\n\n"
+        f"Customer: {request.user.username}\n"
+        f"Service: {appointment.service.name}\n"
+        f"Date: {appointment.appointment_date}\n"
+        f"Time: {appointment.appointment_time}\n"
+        f"Status: {appointment.status}"
+        )
         messages.success(request, 'Your appointment has been booked successfully.')
         return redirect('booking_confirmation', appointment_id=appointment.id)
     return render(request, 'core/booking.html', {'form': form})
@@ -176,5 +193,12 @@ def cancel_booking(request, appointment_id):
     else:
         appointment.status = 'Cancelled'
         appointment.save()
+        send_telegram_notification(
+            f"❌ BOOKING CANCELLED\n\n"
+            f"Customer: {request.user.username}\n"
+            f"Service: {appointment.service.name}\n"
+            f"Date: {appointment.appointment_date}\n"
+            f"Time: {appointment.appointment_time}"
+        )
         messages.success(request, 'Your appointment has been cancelled.')
     return redirect('my_bookings')
