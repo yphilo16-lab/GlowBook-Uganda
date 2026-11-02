@@ -32,6 +32,12 @@ body {
     color: var(--ink);
     line-height: 1.7;
     overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+}
+
+main {
+    display: block;
 }
 img { max-width: 100%; display: block; }
 a { color: inherit; text-decoration: none; }
@@ -693,6 +699,7 @@ button, input, select, textarea { font: inherit; }
     .nav-wrap {
         min-height: auto;
         gap: 12px;
+        padding: 14px 0;
     }
 
     .brand {
@@ -701,20 +708,27 @@ button, input, select, textarea { font: inherit; }
     }
 
     .main-nav {
-        gap: 10px 14px;
+        gap: 8px 12px;
+        justify-content: flex-start;
     }
 
     .main-nav a {
-        font-size: 0.7rem;
+        font-size: 0.68rem;
         letter-spacing: 0.05em;
     }
 
     .hero {
-        padding-top: 52px;
+        padding-top: 42px;
+        padding-bottom: 52px;
+    }
+
+    .hero-grid {
+        gap: 22px;
     }
 
     .hero-copy-block h1 {
         font-size: clamp(2.4rem, 11vw, 4rem);
+        line-height: 1.02;
     }
 
     .hero-copy-block p,
@@ -738,14 +752,40 @@ button, input, select, textarea { font: inherit; }
     }
 
     .hero-visual img {
-        height: 360px;
+        height: 340px;
+        border-radius: 24px;
+    }
+
+    .floating-badge {
+        left: 14px;
+        right: 14px;
+        bottom: 14px;
+        padding: 12px 14px;
     }
 
     .button-row,
     .booking-actions,
-    .cta-bar {
+    .cta-bar,
+    .cta-box {
         flex-direction: column;
         align-items: stretch;
+    }
+
+    .btn {
+        width: 100%;
+    }
+
+    .section {
+        padding: 68px 0;
+    }
+
+    .section-heading h2 {
+        font-size: clamp(2rem, 8vw, 2.7rem);
+    }
+
+    .service-card img,
+    .studio-card img {
+        height: 200px;
     }
 
     .booking-row,
@@ -769,6 +809,7 @@ button, input, select, textarea { font: inherit; }
     .toast-stack {
         left: 14px;
         right: 14px;
+        top: 18px;
     }
 
     .alert {
@@ -798,6 +839,11 @@ button, input, select, textarea { font: inherit; }
 
     .main-nav {
         justify-content: flex-start;
+        gap: 7px 10px;
+    }
+
+    .main-nav a {
+        padding: 2px 0;
     }
 
     .service-card__body,
@@ -824,5 +870,17 @@ button, input, select, textarea { font: inherit; }
     .success-card h1,
     .auth-panel h1 {
         font-size: clamp(2.3rem, 9vw, 3.2rem);
+    }
+
+    .hero-stats li {
+        padding: 12px 14px;
+    }
+
+    .hero-stats strong {
+        font-size: 1.4rem;
+    }
+
+    .cta-box {
+        padding: 22px 18px;
     }
 }

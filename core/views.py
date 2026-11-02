@@ -12,12 +12,70 @@ from .models import Appointment, CustomerProfile, Service
 from .telegram_notifications import send_telegram_notification
 
 
+def ensure_default_services():
+    if Service.objects.exists():
+        return
+
+    default_services = [
+        {
+            'name': 'Signature Hair Spa',
+            'description': 'Deep cleansing scalp treatment, nourishing mask, and smooth finish for healthy, glossy hair.',
+            'category': 'Hair Care',
+            'audience': 'Women',
+            'price': '120000.00',
+            'duration': '90 minutes',
+            'image': 'https://images.unsplash.com/photo-1521590832167-7b0d0d0d0b6a?auto=format&fit=crop&w=900&q=80',
+        },
+        {
+            'name': 'Glow Facial Therapy',
+            'description': 'A refreshing facial designed to brighten skin, reduce dullness, and deeply hydrate.',
+            'category': 'Skin Care',
+            'audience': 'Women',
+            'price': '95000.00',
+            'duration': '60 minutes',
+            'image': 'https://images.unsplash.com/photo-1515377905703-c4788e51af15?auto=format&fit=crop&w=900&q=80',
+        },
+        {
+            'name': 'Luxury Manicure',
+            'description': 'Nail shaping, cuticle care, and a polished finish for neat and confident hands.',
+            'category': 'Nail Care',
+            'audience': 'Unisex',
+            'price': '45000.00',
+            'duration': '45 minutes',
+            'image': 'https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=900&q=80',
+        },
+        {
+            'name': 'Relaxation Full Body Massage',
+            'description': 'A soothing body treatment that eases stress, improves circulation, and restores calm.',
+            'category': 'Spa & Wellness',
+            'audience': 'Unisex',
+            'price': '150000.00',
+            'duration': '90 minutes',
+            'image': 'https://images.unsplash.com/photo-1515377905703-c4788e51af15?auto=format&fit=crop&w=900&q=80',
+        },
+        {
+            'name': 'Beard Grooming',
+            'description': 'Precision beard trim, shaping, and finishing care for a clean, refined look.',
+            'category': 'Grooming',
+            'audience': 'Men',
+            'price': '60000.00',
+            'duration': '40 minutes',
+            'image': 'https://images.unsplash.com/photo-1512496015851-a90fb38ba796?auto=format&fit=crop&w=900&q=80',
+        },
+    ]
+
+    for item in default_services:
+        Service.objects.get_or_create(name=item['name'], defaults=item)
+
+
 def home(request):
+    ensure_default_services()
     featured_services = Service.objects.filter(available=True)[:3]
     return render(request, 'core/home.html', {'featured_services': featured_services})
 
 
 def services(request):
+    ensure_default_services()
     services = Service.objects.filter(available=True).order_by('category', 'name')
     grouped = {}
     for service in services:
