@@ -14,12 +14,12 @@ from .telegram_notifications import send_telegram_notification
 
 
 DEFAULT_SERVICE_IMAGES = {
-    'Hair Care': '/static/core/images/hair-spa.svg',
-    'Skin Care': '/static/core/images/skincare.svg',
-    'Nail Care': '/static/core/images/nail-care.svg',
-    'Spa & Wellness': '/static/core/images/wellness.svg',
-    'Grooming': '/static/core/images/grooming.svg',
-    'Makeup': '/static/core/images/makeup.svg',
+    'Hair Care': 'https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?auto=format&fit=crop&w=900&q=80',
+    'Skin Care': 'https://images.unsplash.com/photo-1556228578-0be9b6db1a94?auto=format&fit=crop&w=900&q=80',
+    'Nail Care': 'https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=900&q=80',
+    'Spa & Wellness': 'https://images.unsplash.com/photo-1515377905703-c4788e51af15?auto=format&fit=crop&w=900&q=80',
+    'Grooming': 'https://images.unsplash.com/photo-1517832606299-7ae9b720a186?auto=format&fit=crop&w=900&q=80',
+    'Makeup': 'https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=crop&w=900&q=80',
 }
 
 
@@ -32,7 +32,7 @@ def ensure_default_services():
             'audience': 'Women',
             'price': '120000.00',
             'duration': '90 minutes',
-            'image': '/static/core/images/hair-spa.svg',
+            'image': 'https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?auto=format&fit=crop&w=900&q=80',
         },
         {
             'name': 'Glow Facial Therapy',
@@ -41,7 +41,7 @@ def ensure_default_services():
             'audience': 'Women',
             'price': '95000.00',
             'duration': '60 minutes',
-            'image': '/static/core/images/skincare.svg',
+            'image': 'https://images.unsplash.com/photo-1556228578-0be9b6db1a94?auto=format&fit=crop&w=900&q=80',
         },
         {
             'name': 'Luxury Manicure',
@@ -50,7 +50,7 @@ def ensure_default_services():
             'audience': 'Unisex',
             'price': '45000.00',
             'duration': '45 minutes',
-            'image': '/static/core/images/nail-care.svg',
+            'image': 'https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=900&q=80',
         },
         {
             'name': 'Relaxation Full Body Massage',
@@ -59,7 +59,7 @@ def ensure_default_services():
             'audience': 'Unisex',
             'price': '150000.00',
             'duration': '90 minutes',
-            'image': '/static/core/images/wellness.svg',
+            'image': 'https://images.unsplash.com/photo-1515377905703-c4788e51af15?auto=format&fit=crop&w=900&q=80',
         },
         {
             'name': 'Beard Grooming',
@@ -68,7 +68,7 @@ def ensure_default_services():
             'audience': 'Men',
             'price': '60000.00',
             'duration': '40 minutes',
-            'image': '/static/core/images/grooming.svg',
+            'image': 'https://images.unsplash.com/photo-1517832606299-7ae9b720a186?auto=format&fit=crop&w=900&q=80',
         },
     ]
 
@@ -83,8 +83,13 @@ def ensure_default_services():
         service.save()
 
     for service in Service.objects.all():
-        desired_image = DEFAULT_SERVICE_IMAGES.get(service.category, '/static/core/images/fallback-beauty.svg')
-        if not service.image or 'images.unsplash.com' in service.image or service.image.startswith('http'):
+        desired_image = DEFAULT_SERVICE_IMAGES.get(service.category, 'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=900&q=80')
+        if (
+            not service.image
+            or 'images.unsplash.com' in service.image
+            or service.image.startswith('http')
+            or service.image.endswith('.svg')
+        ):
             service.image = desired_image
             service.save(update_fields=['image'])
 

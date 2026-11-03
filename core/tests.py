@@ -36,18 +36,17 @@ class GlowBookTests(TestCase):
         self.assertContains(response, 'glowbookuganda@gmail.com')
         self.assertContains(response, 'https://wa.me/256789251543')
 
-    def test_home_page_uses_local_service_assets(self):
+    def test_home_page_uses_licensed_photo_assets(self):
         response = self.client.get(reverse('home'))
         self.assertEqual(response.status_code, 200)
-        self.assertContains(response, '/static/core/images/beauty-hero.svg')
-        self.assertContains(response, '/static/core/images/hair-spa.svg')
-        self.assertNotContains(response, 'images.unsplash.com')
+        self.assertContains(response, 'images.unsplash.com/photo-1524504388940-b1c1722653e1')
+        self.assertContains(response, 'images.unsplash.com/photo-1521590832167-7bcbfaa6381f')
 
-    def test_services_page_uses_local_service_assets(self):
+    def test_services_page_uses_licensed_photo_assets(self):
         response = self.client.get(reverse('services'))
         self.assertEqual(response.status_code, 200)
-        self.assertContains(response, '/static/core/images/fallback-beauty.svg')
-        self.assertNotContains(response, 'images.unsplash.com')
+        self.assertContains(response, 'images.unsplash.com/photo-1524504388940-b1c1722653e1')
+        self.assertContains(response, 'images.unsplash.com/photo-1556228578-0be9b6db1a94')
 
     def test_home_page_loads(self):
         response = self.client.get(reverse('home'))
