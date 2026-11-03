@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 600" role="img" aria-labelledby="title desc">
+  <title id="title">Wellness illustration</title>
+  <desc id="desc">Relaxing spa and wellness treatment illustration.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#f6efe8"/>
+      <stop offset="100%" stop-color="#efe7de"/>
+    </linearGradient>
+  </defs>
+  <rect width="900" height="600" fill="url(#bg)"/>
+  <circle cx="670" cy="125" r="74" fill="#f2d8d0"/>
+  <rect x="250" y="160" width="420" height="250" rx="34" fill="#fffaf6"/>
+  <path d="M300 410c38-88 119-134 216-134 135 0 213 90 232 134v84H300v-84z" fill="#e3cbb7"/>
+  <circle cx="380" cy="266" r="60" fill="#f2d1b8"/>
+  <circle cx="518" cy="266" r="60" fill="#f2d1b8"/>
+  <path d="M330 250c14-35 61-59 102-59 42 0 78 19 100 58" stroke="#6d4854" stroke-width="10" stroke-linecap="round" fill="none"/>
+  <path d="M343 294c26 20 44 30 64 30 22 0 39-11 62-30" stroke="#7a525f" stroke-width="8" stroke-linecap="round" fill="none"/>
+  <path d="M480 222c10 0 18 8 18 18 0 10-8 18-18 18-11 0-19-8-19-18s8-18 19-18z" fill="#f0c866"/>
+  <path d="M570 225c14 0 22 10 22 22s-8 20-22 20-22-8-22-20 8-22 22-22z" fill="#f0c866"/>
+  <path d="M630 170c34 32 50 78 46 129m-65-79c18 12 33 26 42 46" stroke="#9bb68c" stroke-width="10" stroke-linecap="round" fill="none"/>
+</svg>

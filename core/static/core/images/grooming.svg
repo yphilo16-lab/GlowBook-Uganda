@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 600" role="img" aria-labelledby="title desc">
+  <title id="title">Grooming illustration</title>
+  <desc id="desc">Male grooming and beard care illustration.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#f7f1ee"/>
+      <stop offset="100%" stop-color="#f2e7db"/>
+    </linearGradient>
+  </defs>
+  <rect width="900" height="600" fill="url(#bg)"/>
+  <circle cx="705" cy="125" r="76" fill="#eac7ac"/>
+  <path d="M270 420c38-94 118-158 198-158 86 0 164 54 214 156v66H270v-64z" fill="#d4b895"/>
+  <circle cx="450" cy="240" r="72" fill="#f1d7c1"/>
+  <path d="M377 202c18-42 51-64 92-64 49 0 90 27 104 71-14-10-32-16-56-18-42-7-79-2-140 11z" fill="#3a2a31"/>
+  <path d="M384 311c27 17 61 26 96 26 30 0 60-8 89-25" stroke="#4e2e35" stroke-width="10" stroke-linecap="round" fill="none"/>
+  <path d="M280 212c10-25 32-42 63-52m268 52c17-22 40-37 68-46" stroke="#8d875d" stroke-width="9" stroke-linecap="round" fill="none"/>
+  <path d="M600 245l90 20m-80 56l90 8m-133-27h76" stroke="#c98d66" stroke-width="10" stroke-linecap="round" fill="none"/>
+</svg>

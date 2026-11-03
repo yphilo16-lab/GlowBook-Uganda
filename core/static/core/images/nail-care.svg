@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 600" role="img" aria-labelledby="title desc">
+  <title id="title">Nail care illustration</title>
+  <desc id="desc">Manicure and nail treatment illustration.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#f9f3ed"/>
+      <stop offset="100%" stop-color="#f2e5d4"/>
+    </linearGradient>
+  </defs>
+  <rect width="900" height="600" fill="url(#bg)"/>
+  <circle cx="215" cy="125" r="70" fill="#f5d0be" opacity="0.9"/>
+  <path d="M285 435c30-122 101-172 175-172 78 0 156 47 204 175v62H285v-65z" fill="#f0c09a"/>
+  <path d="M360 175c25-36 59-54 106-54 84 0 146 56 146 160v22H344v-64c0-31 8-59 16-64z" fill="#e7b39d"/>
+  <g fill="#fffaf8" stroke="#d58f81" stroke-width="7">
+    <rect x="350" y="150" width="52" height="110" rx="20"/>
+    <rect x="410" y="144" width="52" height="124" rx="20"/>
+    <rect x="470" y="148" width="52" height="116" rx="20"/>
+    <rect x="530" y="160" width="52" height="102" rx="20"/>
+  </g>
+  <g fill="#f7d1ad" stroke="#d88e3a" stroke-width="6">
+    <circle cx="375" cy="126" r="14"/>
+    <circle cx="435" cy="120" r="14"/>
+    <circle cx="495" cy="124" r="14"/>
+    <circle cx="555" cy="136" r="14"/>
+  </g>
+  <path d="M610 265l80 54m-79 30l79 30m-143-22h92m-92-62h92" stroke="#d9a05a" stroke-width="10" stroke-linecap="round" fill="none"/>
+</svg>

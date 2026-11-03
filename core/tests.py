@@ -29,6 +29,19 @@ class GlowBookTests(TestCase):
         self.assertTrue(response.headers['Content-Type'].startswith('text/plain'))
         self.assertEqual(response.content.decode('utf-8'), 'GlowBook Uganda is running')
 
+    def test_home_page_uses_local_service_assets(self):
+        response = self.client.get(reverse('home'))
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, '/static/core/images/beauty-hero.svg')
+        self.assertContains(response, '/static/core/images/hair-spa.svg')
+        self.assertNotContains(response, 'images.unsplash.com')
+
+    def test_services_page_uses_local_service_assets(self):
+        response = self.client.get(reverse('services'))
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, '/static/core/images/fallback-beauty.svg')
+        self.assertNotContains(response, 'images.unsplash.com')
+
     def test_home_page_loads(self):
         response = self.client.get(reverse('home'))
         self.assertEqual(response.status_code, 200)
