@@ -3,6 +3,7 @@ from urllib.parse import quote
 from django.contrib import messages
 from django.contrib.auth import authenticate, get_user_model, login, logout
 from django.contrib.auth.decorators import login_required, user_passes_test
+from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, redirect, render
 from django.utils import timezone
 from django.views.decorators.http import require_POST
@@ -66,6 +67,19 @@ def ensure_default_services():
 
     for item in default_services:
         Service.objects.get_or_create(name=item['name'], defaults=item)
+
+
+def robots_txt(request):
+    content = (
+        'User-agent: *\n'
+        'Allow: /\n'
+        'Disallow: /admin/\n'
+        'Disallow: /dashboard/\n'
+        'Disallow: /admin-dashboard/\n'
+        'Disallow: /my-bookings/\n\n'
+        'Sitemap: https://glowbook-uganda.onrender.com/sitemap.xml\n'
+    )
+    return HttpResponse(content, content_type='text/plain; charset=utf-8')
 
 
 def home(request):

@@ -6,6 +6,23 @@ from .models import Appointment, CustomerProfile, Service
 
 
 class GlowBookTests(TestCase):
+    def test_robots_txt_returns_expected_plain_text(self):
+        response = self.client.get('/robots.txt')
+        self.assertEqual(response.status_code, 200)
+        self.assertTrue(response.headers['Content-Type'].startswith('text/plain'))
+        self.assertEqual(
+            response.content.decode('utf-8'),
+            (
+                'User-agent: *\n'
+                'Allow: /\n'
+                'Disallow: /admin/\n'
+                'Disallow: /dashboard/\n'
+                'Disallow: /admin-dashboard/\n'
+                'Disallow: /my-bookings/\n\n'
+                'Sitemap: https://glowbook-uganda.onrender.com/sitemap.xml\n'
+            ),
+        )
+
     def test_home_page_loads(self):
         response = self.client.get(reverse('home'))
         self.assertEqual(response.status_code, 200)
