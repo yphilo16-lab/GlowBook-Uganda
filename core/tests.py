@@ -29,6 +29,13 @@ class GlowBookTests(TestCase):
         self.assertTrue(response.headers['Content-Type'].startswith('text/plain'))
         self.assertEqual(response.content.decode('utf-8'), 'GlowBook Uganda is running')
 
+    def test_contact_page_uses_updated_business_email_and_keeps_whatsapp(self):
+        response = self.client.get(reverse('contact'))
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, 'mailto:glowbookuganda@gmail.com')
+        self.assertContains(response, 'glowbookuganda@gmail.com')
+        self.assertContains(response, 'https://wa.me/256789251543')
+
     def test_home_page_uses_local_service_assets(self):
         response = self.client.get(reverse('home'))
         self.assertEqual(response.status_code, 200)
