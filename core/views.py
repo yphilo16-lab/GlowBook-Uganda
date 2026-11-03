@@ -82,6 +82,10 @@ def robots_txt(request):
     return HttpResponse(content, content_type='text/plain; charset=utf-8')
 
 
+def health_check(request):
+    return HttpResponse('GlowBook Uganda is running', content_type='text/plain; charset=utf-8')
+
+
 def home(request):
     ensure_default_services()
     featured_services = Service.objects.filter(available=True)[:3]
