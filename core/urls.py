@@ -4,6 +4,7 @@ from . import views
 
 urlpatterns = [
     path('robots.txt', views.robots_txt, name='robots_txt'),
+    path('health/', views.health_check, name='health_check'),
     path('', views.home, name='home'),
     path('services/', views.services, name='services'),
     path('about/', views.about, name='about'),

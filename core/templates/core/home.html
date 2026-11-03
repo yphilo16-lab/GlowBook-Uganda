@@ -21,7 +21,7 @@
         </div>
 
         <div class="hero-visual">
-            <img src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=900&q=80" alt="Beauty salon professional styling hair" width="900" height="1200" fetchpriority="high">
+            <img src="/static/core/images/beauty-hero.svg" alt="Beauty salon professional styling hair" width="900" height="1200" fetchpriority="high" onerror="this.onerror=null;this.src='/static/core/images/fallback-beauty.svg';">
             <div class="floating-badge">
                 <span>Top rated salon</span>
                 <strong>4.9 / 5</strong>
@@ -40,7 +40,7 @@
         <div class="service-grid">
             {% for service in featured_services %}
                 <article class="service-card">
-                    <img src="{{ service.image }}" alt="{{ service.name }}" width="900" height="600" loading="lazy" decoding="async">
+                    <img src="{{ service.image|default:'/static/core/images/fallback-beauty.svg' }}" alt="{{ service.name }}" width="900" height="600" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='/static/core/images/fallback-beauty.svg';">
                     <div class="service-card__body">
                         <span class="category-tag">{{ service.category }}</span>
                         <h3>{{ service.name }}</h3>
@@ -54,7 +54,7 @@
                 </article>
             {% empty %}
                 <article class="service-card">
-                    <img src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=900&q=80" alt="Hair braiding" width="900" height="600" loading="lazy" decoding="async">
+                    <img src="/static/core/images/hair-spa.svg" alt="Hair braiding" width="900" height="600" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='/static/core/images/fallback-beauty.svg';">
                     <div class="service-card__body">
                         <span class="category-tag">Hair Care</span>
                         <h3>Hair Braiding</h3>
@@ -64,7 +64,7 @@
                     </div>
                 </article>
                 <article class="service-card">
-                    <img src="https://images.unsplash.com/photo-1556228578-8c89e6adf883?auto=format&fit=crop&w=900&q=80" alt="Makeup service" width="900" height="600" loading="lazy" decoding="async">
+                    <img src="/static/core/images/makeup.svg" alt="Makeup service" width="900" height="600" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='/static/core/images/fallback-beauty.svg';">
                     <div class="service-card__body">
                         <span class="category-tag">Makeup</span>
                         <h3>Makeup</h3>
@@ -74,7 +74,7 @@
                     </div>
                 </article>
                 <article class="service-card">
-                    <img src="https://images.unsplash.com/photo-1515377905703-c4788e51af15?auto=format&fit=crop&w=900&q=80" alt="Spa treatment" width="900" height="600" loading="lazy" decoding="async">
+                    <img src="/static/core/images/wellness.svg" alt="Spa treatment" width="900" height="600" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='/static/core/images/fallback-beauty.svg';">
                     <div class="service-card__body">
                         <span class="category-tag">Spa</span>
                         <h3>Spa Treatments</h3>
@@ -122,21 +122,21 @@
         </div>
         <div class="studio-grid">
             <article class="studio-card">
-                <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=800&q=80" alt="Glow Studio Naguru" width="800" height="600" loading="lazy" decoding="async">
+                <img src="/static/core/images/hair-spa.svg" alt="Glow Studio Naguru" width="800" height="600" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='/static/core/images/fallback-beauty.svg';">
                 <div>
                     <h3>Glow Studio Naguru</h3>
                     <p>Hair styling · makeup · spa</p>
                 </div>
             </article>
             <article class="studio-card">
-                <img src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?auto=format&fit=crop&w=800&q=80" alt="Velvet Beauty Lounge" width="800" height="600" loading="lazy" decoding="async">
+                <img src="/static/core/images/makeup.svg" alt="Velvet Beauty Lounge" width="800" height="600" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='/static/core/images/fallback-beauty.svg';">
                 <div>
                     <h3>Velvet Beauty Lounge</h3>
                     <p>Braids · skincare · manicure</p>
                 </div>
             </article>
             <article class="studio-card">
-                <img src="https://images.unsplash.com/photo-1562322140-8baeececf3df?auto=format&fit=crop&w=800&q=80" alt="Rose & Co. Spa" width="800" height="600" loading="lazy" decoding="async">
+                <img src="/static/core/images/skincare.svg" alt="Rose & Co. Spa" width="800" height="600" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='/static/core/images/fallback-beauty.svg';">
                 <div>
                     <h3>Rose & Co. Spa</h3>
                     <p>Facials · massage · grooming</p>

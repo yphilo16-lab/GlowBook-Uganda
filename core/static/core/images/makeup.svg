@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 600" role="img" aria-labelledby="title desc">
+  <title id="title">Makeup illustration</title>
+  <desc id="desc">Professional makeup and beauty product illustration.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#f9f0ee"/>
+      <stop offset="100%" stop-color="#f4dfdd"/>
+    </linearGradient>
+  </defs>
+  <rect width="900" height="600" fill="url(#bg)"/>
+  <circle cx="705" cy="120" r="78" fill="#f6d2d0"/>
+  <rect x="275" y="155" width="350" height="270" rx="24" fill="#fffaf8"/>
+  <rect x="355" y="195" width="190" height="34" rx="17" fill="#d88a88"/>
+  <circle cx="450" cy="273" r="72" fill="#f0d1bf"/>
+  <circle cx="420" cy="268" r="7" fill="#38262d"/>
+  <circle cx="480" cy="268" r="7" fill="#38262d"/>
+  <path d="M418 299c18 18 31 26 47 26 17 0 29-8 48-26" stroke="#8b4d5d" stroke-width="8" stroke-linecap="round" fill="none"/>
+  <path d="M240 360c32-42 80-66 155-70" stroke="#d9b86e" stroke-width="12" stroke-linecap="round" fill="none"/>
+  <path d="M610 360c-36-44-79-66-148-72" stroke="#d9b86e" stroke-width="12" stroke-linecap="round" fill="none"/>
+  <rect x="160" y="240" width="92" height="150" rx="18" fill="#f3b99b"/>
+  <rect x="650" y="240" width="92" height="150" rx="18" fill="#e2b7c7"/>
+  <circle cx="206" cy="216" r="26" fill="#f5d1a2"/>
+  <circle cx="696" cy="214" r="24" fill="#e2c0d8"/>
+  <path d="M180 365h50m-25-85v20m-25 47h50" stroke="#94404e" stroke-width="8" stroke-linecap="round"/>
+</svg>

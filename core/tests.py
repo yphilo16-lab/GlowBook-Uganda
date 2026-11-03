@@ -23,6 +23,32 @@ class GlowBookTests(TestCase):
             ),
         )
 
+    def test_health_check_endpoint_returns_expected_response(self):
+        response = self.client.get('/health/')
+        self.assertEqual(response.status_code, 200)
+        self.assertTrue(response.headers['Content-Type'].startswith('text/plain'))
+        self.assertEqual(response.content.decode('utf-8'), 'GlowBook Uganda is running')
+
+    def test_contact_page_uses_updated_business_email_and_keeps_whatsapp(self):
+        response = self.client.get(reverse('contact'))
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, 'mailto:glowbookuganda@gmail.com')
+        self.assertContains(response, 'glowbookuganda@gmail.com')
+        self.assertContains(response, 'https://wa.me/256789251543')
+
+    def test_home_page_uses_local_service_assets(self):
+        response = self.client.get(reverse('home'))
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, '/static/core/images/beauty-hero.svg')
+        self.assertContains(response, '/static/core/images/hair-spa.svg')
+        self.assertNotContains(response, 'images.unsplash.com')
+
+    def test_services_page_uses_local_service_assets(self):
+        response = self.client.get(reverse('services'))
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, '/static/core/images/fallback-beauty.svg')
+        self.assertNotContains(response, 'images.unsplash.com')
+
     def test_home_page_loads(self):
         response = self.client.get(reverse('home'))
         self.assertEqual(response.status_code, 200)

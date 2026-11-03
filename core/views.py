@@ -13,10 +13,17 @@ from .models import Appointment, CustomerProfile, Service
 from .telegram_notifications import send_telegram_notification
 
 
-def ensure_default_services():
-    if Service.objects.exists():
-        return
+DEFAULT_SERVICE_IMAGES = {
+    'Hair Care': '/static/core/images/hair-spa.svg',
+    'Skin Care': '/static/core/images/skincare.svg',
+    'Nail Care': '/static/core/images/nail-care.svg',
+    'Spa & Wellness': '/static/core/images/wellness.svg',
+    'Grooming': '/static/core/images/grooming.svg',
+    'Makeup': '/static/core/images/makeup.svg',
+}
 
+
+def ensure_default_services():
     default_services = [
         {
             'name': 'Signature Hair Spa',
@@ -25,7 +32,7 @@ def ensure_default_services():
             'audience': 'Women',
             'price': '120000.00',
             'duration': '90 minutes',
-            'image': 'https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=900&q=80',
+            'image': '/static/core/images/hair-spa.svg',
         },
         {
             'name': 'Glow Facial Therapy',
@@ -34,7 +41,7 @@ def ensure_default_services():
             'audience': 'Women',
             'price': '95000.00',
             'duration': '60 minutes',
-            'image': 'https://images.unsplash.com/photo-1515377905703-c4788e51af15?auto=format&fit=crop&w=900&q=80',
+            'image': '/static/core/images/skincare.svg',
         },
         {
             'name': 'Luxury Manicure',
@@ -43,7 +50,7 @@ def ensure_default_services():
             'audience': 'Unisex',
             'price': '45000.00',
             'duration': '45 minutes',
-            'image': 'https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=900&q=80',
+            'image': '/static/core/images/nail-care.svg',
         },
         {
             'name': 'Relaxation Full Body Massage',
@@ -52,7 +59,7 @@ def ensure_default_services():
             'audience': 'Unisex',
             'price': '150000.00',
             'duration': '90 minutes',
-            'image': 'https://images.unsplash.com/photo-1515377905703-c4788e51af15?auto=format&fit=crop&w=900&q=80',
+            'image': '/static/core/images/wellness.svg',
         },
         {
             'name': 'Beard Grooming',
@@ -61,12 +68,25 @@ def ensure_default_services():
             'audience': 'Men',
             'price': '60000.00',
             'duration': '40 minutes',
-            'image': 'https://images.unsplash.com/photo-1512496015851-a90fb38ba796?auto=format&fit=crop&w=900&q=80',
+            'image': '/static/core/images/grooming.svg',
         },
     ]
 
     for item in default_services:
-        Service.objects.get_or_create(name=item['name'], defaults=item)
+        service, created = Service.objects.get_or_create(name=item['name'], defaults=item)
+        if created:
+            continue
+
+        for field, value in item.items():
+            if getattr(service, field) != value:
+                setattr(service, field, value)
+        service.save()
+
+    for service in Service.objects.all():
+        desired_image = DEFAULT_SERVICE_IMAGES.get(service.category, '/static/core/images/fallback-beauty.svg')
+        if not service.image or 'images.unsplash.com' in service.image or service.image.startswith('http'):
+            service.image = desired_image
+            service.save(update_fields=['image'])
 
 
 def robots_txt(request):
@@ -80,6 +100,10 @@ def robots_txt(request):
         'Sitemap: https://glowbook-uganda.onrender.com/sitemap.xml\n'
     )
     return HttpResponse(content, content_type='text/plain; charset=utf-8')
+
+
+def health_check(request):
+    return HttpResponse('GlowBook Uganda is running', content_type='text/plain; charset=utf-8')
 
 
 def home(request):
