@@ -24,7 +24,7 @@ class Migration(migrations.Migration):
                 ('audience', models.CharField(choices=[('Women', 'Women'), ('Men', 'Men'), ('Unisex', 'Unisex')], default='Unisex', max_length=20)),
                 ('price', models.DecimalField(decimal_places=2, max_digits=10)),
                 ('duration', models.CharField(default='60 minutes', max_length=60)),
-                ('image', models.URLField(default='/static/core/images/fallback-beauty.svg')),
+                ('image', models.URLField(default='/static/core/images/fallback-beauty.jpg')),
                 ('available', models.BooleanField(default=True)),
                 ('created_at', models.DateTimeField(auto_now_add=True)),
             ],

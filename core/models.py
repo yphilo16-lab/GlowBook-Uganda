@@ -23,7 +23,7 @@ class Service(models.Model):
     audience = models.CharField(max_length=20, choices=AUDIENCE_CHOICES, default='Unisex')
     price = models.DecimalField(max_digits=10, decimal_places=2)
     duration = models.CharField(max_length=60, default='60 minutes')
-    image = models.URLField(default='/static/core/images/fallback-beauty.svg')
+    image = models.URLField(default='/static/core/images/fallback-beauty.jpg')
     available = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)
 

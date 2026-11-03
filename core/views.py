@@ -14,12 +14,12 @@ from .telegram_notifications import send_telegram_notification
 
 
 DEFAULT_SERVICE_IMAGES = {
-    'Hair Care': '/static/core/images/hair-spa.svg',
-    'Skin Care': '/static/core/images/skincare.svg',
-    'Nail Care': '/static/core/images/nail-care.svg',
-    'Spa & Wellness': '/static/core/images/wellness.svg',
-    'Grooming': '/static/core/images/grooming.svg',
-    'Makeup': '/static/core/images/makeup.svg',
+    'Hair Care': '/static/core/images/hair-spa.jpg',
+    'Skin Care': '/static/core/images/skincare.jpg',
+    'Nail Care': '/static/core/images/nail-care.jpg',
+    'Spa & Wellness': '/static/core/images/wellness.jpg',
+    'Grooming': '/static/core/images/grooming.jpg',
+    'Makeup': '/static/core/images/makeup.jpg',
 }
 
 
@@ -32,7 +32,7 @@ def ensure_default_services():
             'audience': 'Women',
             'price': '120000.00',
             'duration': '90 minutes',
-            'image': '/static/core/images/hair-spa.svg',
+            'image': '/static/core/images/hair-spa.jpg',
         },
         {
             'name': 'Glow Facial Therapy',
@@ -41,7 +41,7 @@ def ensure_default_services():
             'audience': 'Women',
             'price': '95000.00',
             'duration': '60 minutes',
-            'image': '/static/core/images/skincare.svg',
+            'image': '/static/core/images/skincare.jpg',
         },
         {
             'name': 'Luxury Manicure',
@@ -50,7 +50,7 @@ def ensure_default_services():
             'audience': 'Unisex',
             'price': '45000.00',
             'duration': '45 minutes',
-            'image': '/static/core/images/nail-care.svg',
+            'image': '/static/core/images/nail-care.jpg',
         },
         {
             'name': 'Relaxation Full Body Massage',
@@ -59,7 +59,7 @@ def ensure_default_services():
             'audience': 'Unisex',
             'price': '150000.00',
             'duration': '90 minutes',
-            'image': '/static/core/images/wellness.svg',
+            'image': '/static/core/images/wellness.jpg',
         },
         {
             'name': 'Beard Grooming',
@@ -68,7 +68,7 @@ def ensure_default_services():
             'audience': 'Men',
             'price': '60000.00',
             'duration': '40 minutes',
-            'image': '/static/core/images/grooming.svg',
+            'image': '/static/core/images/grooming.jpg',
         },
     ]
 
@@ -83,8 +83,13 @@ def ensure_default_services():
         service.save()
 
     for service in Service.objects.all():
-        desired_image = DEFAULT_SERVICE_IMAGES.get(service.category, '/static/core/images/fallback-beauty.svg')
-        if not service.image or 'images.unsplash.com' in service.image or service.image.startswith('http'):
+        desired_image = DEFAULT_SERVICE_IMAGES.get(service.category, '/static/core/images/fallback-beauty.jpg')
+        if (
+            not service.image
+            or 'images.unsplash.com' in service.image
+            or service.image.startswith('http')
+            or service.image.endswith('.svg')
+        ):
             service.image = desired_image
             service.save(update_fields=['image'])
 

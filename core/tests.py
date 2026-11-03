@@ -39,14 +39,14 @@ class GlowBookTests(TestCase):
     def test_home_page_uses_local_service_assets(self):
         response = self.client.get(reverse('home'))
         self.assertEqual(response.status_code, 200)
-        self.assertContains(response, '/static/core/images/beauty-hero.svg')
-        self.assertContains(response, '/static/core/images/hair-spa.svg')
+        self.assertContains(response, '/static/core/images/beauty-hero.jpg')
+        self.assertContains(response, '/static/core/images/hair-spa.jpg')
         self.assertNotContains(response, 'images.unsplash.com')
 
     def test_services_page_uses_local_service_assets(self):
         response = self.client.get(reverse('services'))
         self.assertEqual(response.status_code, 200)
-        self.assertContains(response, '/static/core/images/fallback-beauty.svg')
+        self.assertContains(response, '/static/core/images/fallback-beauty.jpg')
         self.assertNotContains(response, 'images.unsplash.com')
 
     def test_home_page_loads(self):

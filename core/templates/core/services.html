@@ -22,7 +22,7 @@
                     <div class="service-grid">
                         {% for service in items %}
                             <article class="service-card">
-                                <img src="{{ service.image|default:'/static/core/images/fallback-beauty.svg' }}" alt="{{ service.name }}" width="900" height="600" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='/static/core/images/fallback-beauty.svg';">
+                                <img src="{{ service.image|default:'/static/core/images/fallback-beauty.jpg' }}" alt="Real client portrait for {{ service.name }}" width="900" height="600" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='/static/core/images/fallback-beauty.jpg';">
                                 <div class="service-card__body">
                                     <span class="category-tag">{{ service.audience }}</span>
                                     <h3>{{ service.name }}</h3>
