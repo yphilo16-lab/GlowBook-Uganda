@@ -2,6 +2,11 @@
 
 GlowBook Uganda is a Django-based beauty and wellness booking platform built for salon and grooming businesses. It includes customer registration, appointment booking, login, dashboards, service listings, admin management, and a WhatsApp booking confirmation flow.
 
+## Documentation
+
+- [Site documentation](docs/site_documentation.md)
+- [Project documentation](docs/project_documentation.md)
+
 ## Features
 
 - Home, about, services, contact and booking pages
