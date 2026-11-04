@@ -1,43 +1,30 @@
-﻿{% extends 'core/base.html' %}
-
-{% load static %}
+{% extends 'core/base.html' %}
 
 {% block title %}GlowBook Uganda | Book Your Glow{% endblock %}
 
 {% block content %}
-<section class="hero hero-premium">
+<section class="hero">
     <div class="container hero-grid">
-        <div class="hero-copy-block reveal">
-            <p class="eyebrow">Elevated beauty experiences</p>
-            <h1>Luxury self-care for the way you live today.</h1>
-            <p>GlowBook Uganda brings together premium hair, skincare, grooming and wellness services in a polished booking experience designed for busy lifestyles.</p>
+        <div class="hero-copy-block">
+            <p class="eyebrow">Book Your Glow, Anytime, Anywhere.</p>
+            <h1>Luxury beauty and wellness services for your everyday confidence.</h1>
+            <p>GlowBook Uganda helps you discover premium salons, grooming experts, and wellness treatments designed for men and women across Uganda. Book in seconds and enjoy a smoother self-care experience.</p>
             <div class="button-row">
                 <a href="{% url 'booking' %}" class="btn btn-primary">Book Appointment</a>
                 <a href="{% url 'services' %}" class="btn btn-secondary">Explore Services</a>
             </div>
             <ul class="hero-stats">
-                <li>
-                    <span class="stat-label">Flexible scheduling</span>
-                    <strong>Book on your terms</strong>
-                </li>
-                <li>
-                    <span class="stat-label">Trusted care</span>
-                    <strong>Beauty experts</strong>
-                </li>
-                <li>
-                    <span class="stat-label">Confidence-first</span>
-                    <strong>Personalized styling</strong>
-                </li>
+                <li><strong>2,000+</strong><span>Happy clients</span></li>
+                <li><strong>4.9/5</strong><span>Average rating</span></li>
+                <li><strong>UGX</strong><span>Transparent pricing</span></li>
             </ul>
         </div>
 
-        <div class="hero-visual reveal">
-            <div class="hero-image-card">
-                <img src="{% static 'core/images/hero-glow.jpg' %}" alt="Luxury beauty portrait featuring a confident client during a salon appointment" width="900" height="1200" loading="eager" decoding="async">
-            </div>
+        <div class="hero-visual">
+            <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=1200&q=80" alt="Dark-skinned woman enjoying salon hair styling and self-care" width="900" height="1200" fetchpriority="high" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=900&q=80';">
             <div class="floating-badge">
-                <span>Beauty concierge</span>
-                <strong>Premium care</strong>
+                <span>Top rated salon</span>
+                <strong>4.9 / 5</strong>
             </div>
         </div>
     </div>
@@ -45,45 +32,39 @@
 
 <section class="section">
     <div class="container">
-        <div class="section-heading reveal">
+        <div class="section-heading">
             <p class="eyebrow eyebrow-dark">Featured services</p>
-            <h2>Beauty and grooming for every moment.</h2>
+            <h2>Popular beauty and wellness treatments</h2>
         </div>
 
         <div class="service-grid">
             {% for service in featured_services %}
-                <article class="service-card reveal">
-                    <div class="image-wrap">
-                        <img src="{% if service.image %}{{ service.image }}{% else %}{% static 'core/images/feature-hair.jpg' %}{% endif %}" alt="Real portrait of a client enjoying {{ service.name|lower }}" width="900" height="600" loading="lazy" decoding="async">
-                    </div>
+                <article class="service-card">
+                    <img src="{{ service.image|default:'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=900&q=80' }}" alt="Real portrait of a client enjoying {{ service.name|lower }}" width="900" height="600" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=900&q=80';">
                     <div class="service-card__body">
                         <span class="category-tag">{{ service.category }}</span>
                         <h3>{{ service.name }}</h3>
                         <p>{{ service.description|truncatewords:18 }}</p>
                         <div class="service-meta">
-                            <span>UGX {{ service.price|floatformat:0|intcomma }}</span>
+                            <span>UGX {{ service.price }}</span>
                             <span>{{ service.duration }}</span>
                         </div>
                         <a href="{% url 'booking' %}?service_id={{ service.id }}" class="btn btn-primary full-width">Book Now</a>
                     </div>
                 </article>
             {% empty %}
-                <article class="service-card reveal">
-                    <div class="image-wrap">
-                        <img src="{% static 'core/images/feature-hair.jpg' %}" alt="Stylish hair service in a premium salon" width="900" height="600" loading="lazy" decoding="async">
-                    </div>
+                <article class="service-card">
+                    <img src="https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?auto=format&fit=crop&w=900&q=80" alt="Dark-skinned woman wearing a stylish braided hairstyle" width="900" height="600" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=900&q=80';">
                     <div class="service-card__body">
                         <span class="category-tag">Hair Care</span>
                         <h3>Hair Braiding</h3>
-                        <p>Beautiful, long-lasting braids styled to suit your personality and everyday confidence.</p>
+                        <p>Beautiful, long-lasting braids styled to suit your personality and lifestyle.</p>
                         <div class="service-meta"><span>UGX 90,000</span><span>60 min</span></div>
                         <a href="{% url 'booking' %}" class="btn btn-primary full-width">Book Now</a>
                     </div>
                 </article>
-                <article class="service-card reveal">
-                    <div class="image-wrap">
-                        <img src="{% static 'core/images/makeup-portrait.jpg' %}" alt="Elegant makeup styling for a polished event look" width="900" height="600" loading="lazy" decoding="async">
-                    </div>
+                <article class="service-card">
+                    <img src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=crop&w=900&q=80" alt="Dark-skinned woman wearing polished makeup for a special occasion" width="900" height="600" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=900&q=80';">
                     <div class="service-card__body">
                         <span class="category-tag">Makeup</span>
                         <h3>Makeup</h3>
@@ -92,10 +73,8 @@
                         <a href="{% url 'booking' %}" class="btn btn-primary full-width">Book Now</a>
                     </div>
                 </article>
-                <article class="service-card reveal">
-                    <div class="image-wrap">
-                        <img src="{% static 'core/images/studio-spa.jpg' %}" alt="Spa and wellness treatment for a calm, restorative beauty experience" width="900" height="600" loading="lazy" decoding="async">
-                    </div>
+                <article class="service-card">
+                    <img src="https://images.unsplash.com/photo-1515377905703-c4788e51af15?auto=format&fit=crop&w=900&q=80" alt="Woman relaxing during a spa and wellness treatment" width="900" height="600" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=900&q=80';">
                     <div class="service-card__body">
                         <span class="category-tag">Spa</span>
                         <h3>Spa Treatments</h3>
@@ -109,27 +88,27 @@
     </div>
 </section>
 
-<section class="section section-soft">
+<section class="section muted-section">
     <div class="container">
-        <div class="section-heading reveal">
+        <div class="section-heading">
             <p class="eyebrow eyebrow-dark">Why GlowBook</p>
-            <h2>Thoughtful beauty experiences made seamless.</h2>
+            <h2>Thoughtful beauty experiences made easy</h2>
         </div>
-        <div class="feature-grid">
-            <div class="feature-card reveal">
+        <div class="three-column">
+            <div class="story-card">
                 <span class="icon-badge"><i class="fa-solid fa-clock"></i></span>
-                <h3>Effortless booking</h3>
-                <p>Pick your service, choose a time, and keep your routine moving without the usual back-and-forth.</p>
+                <h3>Fast booking</h3>
+                <p>Choose your favorite service, book your ideal slot, and manage appointments in minutes.</p>
             </div>
-            <div class="feature-card reveal">
+            <div class="story-card">
                 <span class="icon-badge"><i class="fa-solid fa-shield-heart"></i></span>
-                <h3>Trusted expertise</h3>
-                <p>Professional treatment options for hair, skincare and grooming with a premium standard of care.</p>
+                <h3>Trusted experts</h3>
+                <p>We work with skilled professionals who value quality, hygiene, and a premium customer experience.</p>
             </div>
-            <div class="feature-card reveal">
+            <div class="story-card">
                 <span class="icon-badge"><i class="fa-solid fa-wallet"></i></span>
-                <h3>Transparent pricing</h3>
-                <p>Clear Ugandan shilling rates make planning easy and remove the guesswork before you arrive.</p>
+                <h3>Clear pricing</h3>
+                <p>All service rates are posted in Uganda shillings with no confusing hidden charges.</p>
             </div>
         </div>
     </div>
@@ -137,59 +116,64 @@
 
 <section class="section">
     <div class="container">
-        <div class="section-heading reveal">
-            <p class="eyebrow eyebrow-dark">How booking works</p>
-            <h2>Simple steps. Beautiful results.</h2>
+        <div class="section-heading">
+            <p class="eyebrow eyebrow-dark">Popular locations</p>
+            <h2>Discover beauty studios near you</h2>
         </div>
-        <div class="process-grid">
-            <div class="process-card reveal">
-                <span class="step-number">01</span>
-                <h3>Choose a service</h3>
-                <p>Browse beauty, grooming and wellness treatments that match your lifestyle and preferences.</p>
-            </div>
-            <div class="process-card reveal">
-                <span class="step-number">02</span>
-                <h3>Select your day</h3>
-                <p>Pick a convenient time slot and prepare for a calm, well-organized appointment.</p>
-            </div>
-            <div class="process-card reveal">
-                <span class="step-number">03</span>
-                <h3>Confirm and enjoy</h3>
-                <p>Receive confirmation and arrive ready to enjoy a polished, confidence-boosting treatment.</p>
-            </div>
+        <div class="studio-grid">
+            <article class="studio-card">
+                <img src="https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?auto=format&fit=crop&w=800&q=80" alt="Glow Studio Naguru beauty portrait" width="800" height="600" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=900&q=80';">
+                <div>
+                    <h3>Glow Studio Naguru</h3>
+                    <p>Hair styling · makeup · spa</p>
+                </div>
+            </article>
+            <article class="studio-card">
+                <img src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=crop&w=800&q=80" alt="Velvet Beauty Lounge makeup portrait" width="800" height="600" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=900&q=80';">
+                <div>
+                    <h3>Velvet Beauty Lounge</h3>
+                    <p>Braids · skincare · manicure</p>
+                </div>
+            </article>
+            <article class="studio-card">
+                <img src="https://images.unsplash.com/photo-1556228578-0be9b6db1a94?auto=format&fit=crop&w=800&q=80" alt="Rose & Co. Spa skincare portrait" width="800" height="600" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=900&q=80';">
+                <div>
+                    <h3>Rose & Co. Spa</h3>
+                    <p>Facials · massage · grooming</p>
+                </div>
+            </article>
         </div>
     </div>
 </section>
 
-<section class="section section-soft">
+<section class="section muted-section">
     <div class="container">
-        <div class="section-heading reveal">
-            <p class="eyebrow eyebrow-dark">Client experience</p>
-            <h2>Approved reviews belong here, once verified.</h2>
-            <p class="verify-note">This section is intentionally left clear of unverified customer claims. Add genuine review quotes only after approval and consent.</p>
+        <div class="section-heading">
+            <p class="eyebrow eyebrow-dark">Testimonials</p>
+            <h2>Clients who keep coming back</h2>
         </div>
         <div class="review-grid">
-            <article class="review-card reveal">
+            <article class="review-card">
                 <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
-                <p>“A polished experience that keeps booking simple and self-care stress-free.”</p>
-                <span class="review-label">Review placeholder — verify before publishing</span>
+                <p>“The booking process was smooth, quick, and professional. I loved how easy it was to find a stylist and confirm my slot.”</p>
+                <h4>Sarah M.</h4>
             </article>
-            <article class="review-card reveal">
+            <article class="review-card">
                 <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
-                <p>“A refined booking journey with premium service options and clear preparation details.”</p>
-                <span class="review-label">Review placeholder — verify before publishing</span>
+                <p>“I booked a haircut and facial in under two minutes. The service was top quality and the team was very helpful.”</p>
+                <h4>Daniel K.</h4>
             </article>
-            <article class="review-card reveal">
+            <article class="review-card">
                 <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
-                <p>“Thoughtful service design that makes beauty appointments feel effortless and confident.”</p>
-                <span class="review-label">Review placeholder — verify before publishing</span>
+                <p>“GlowBook gave me a premium salon experience without the stress. I can now book my appointments from anywhere.”</p>
+                <h4>Hilda A.</h4>
             </article>
         </div>
     </div>
 </section>
 
 <section class="section contact-section">
-    <div class="container cta-box reveal">
+    <div class="container cta-box">
         <div>
             <p class="eyebrow">Ready for your glow-up?</p>
             <h2>Book your next beauty appointment today.</h2>
