@@ -145,7 +145,7 @@ body.nav-scrolled .topbar {
     position: relative;
     isolation: isolate;
     padding: 110px 0 90px;
-    background: linear-gradient(120deg, rgba(30, 18, 26, 0.88), rgba(68, 47, 58, 0.78)), url("../images/hero-glow.jpg") center/cover no-repeat;
+    background: linear-gradient(120deg, rgba(30, 18, 26, 0.88), rgba(68, 47, 58, 0.78)), url("images/hero-glow.jpg") center/cover no-repeat;
     color: var(--white);
 }
 
